@@ -1,0 +1,31 @@
+<html>  
+    <head>
+        <meta charset="utf-8"/>
+        <script src="wasm_exec.js"></script>
+        <script>
+            const go = new Go();
+
+            WebAssembly.instantiateStreaming(fetch("lib.wasm"), go.importObject).then((result) => {
+                go.run(result.instance);
+            });
+            
+        </script>
+    </head>
+    <body>
+        <textarea id="input1"></textarea>
+        <textarea id="input2"></textarea>
+
+        <button id="button" onclick="calc(input1.value, input2.value)">calc</button>
+
+        <p id="result" name="result">result</a>
+    </body>
+    <script>
+
+        const calc = (value1, value2) => {
+            const result = calcSum(value1,value2)
+            const elem  = document.getElementById("result")
+            elem.textContent = result
+        }
+
+    </script>
+</html>
