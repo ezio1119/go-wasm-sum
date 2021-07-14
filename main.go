@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"syscall/js"
+	"time"
 )
 
 func calcSum(a, b int) int {
@@ -12,7 +13,13 @@ func calcSum(a, b int) int {
 
 func calcSumJs() js.Func {
 	return js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-		fmt.Printf("%#v\n", args[0].String())
+		go func() {
+			for {
+				time.Sleep(time.Second)
+				fmt.Println("ループ中")
+			}
+		}()
+
 		if len(args) != 2 {
 			return "Invalid arguments passed"
 		}
