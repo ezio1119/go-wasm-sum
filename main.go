@@ -31,6 +31,7 @@ func calcSumJs() js.Func {
 }
 
 func main() {
+	js.Global().Set("calcSum", calcSumJs())
 
 	<-make(chan struct{})
 }
